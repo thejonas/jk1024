@@ -43,4 +43,15 @@ class StoreTest {
                                            RentalAgreement::toolBrand)
                                .containsExactly(toolType, brand);
   }
+
+  @ParameterizedTest
+  @CsvSource(textBlock = """
+          JAKR, 2.99
+          LADW, 1.99
+          """)
+  void lookupChargePolicy(String toolCode, Double dailyCharge) {
+    final var rentalAgreement = store.checkout(toolCode, LocalDate.now(), 3, 0);
+
+    assertThat(rentalAgreement.dailyRentalCharge()).isEqualTo(dailyCharge);
+  }
 }
