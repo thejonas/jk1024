@@ -13,6 +13,6 @@ public class Main {
             Integer.parseInt(args[3])
     );
 
-    System.out.println(rentalAgreement);
+    System.out.println(rentalAgreement.format());
   }
 }
