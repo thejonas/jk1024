@@ -1,6 +1,7 @@
 package jk;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -53,5 +54,16 @@ class StoreTest {
     final var rentalAgreement = store.checkout(toolCode, LocalDate.now(), 3, 0);
 
     assertThat(rentalAgreement.dailyRentalCharge()).isEqualTo(dailyCharge);
+  }
+
+  @Test
+  void computeSimpleCharge() {
+    final var onAWednesday = LocalDate.of(2024, 10, 2);
+    final var rentalAgreement = store.checkout("LADW", onAWednesday, 2, 0);
+
+    assertThat(rentalAgreement).extracting(RentalAgreement::dueDate,
+                                           RentalAgreement::chargeDays,
+                                           RentalAgreement::finalCharge)
+                               .containsExactly(onAWednesday.plusDays(1), 2, 3.98);
   }
 }

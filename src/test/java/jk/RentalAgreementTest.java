@@ -47,6 +47,7 @@ class RentalAgreementTest {
   @Test
   void formatCurrencies() {
     assertThat(RENTAL_AGREEMENT.format())
-            .contains("Daily rental charge: $1.93\n");
+            .contains("Daily rental charge: $1.93\n",
+                      "Final charge: $4,555.33\n");
   }
 }

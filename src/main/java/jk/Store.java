@@ -20,13 +20,13 @@ public class Store {
             tool.brand(),
             rentalDays,
             checkoutDate,
-            null,
+            checkoutDate.plusDays(rentalDays - 1),
             chargePolicy.dailyCharge(),
-            null,
+            rentalDays,
             null,
             discountPercent,
             null,
-            null);
+            rentalDays * chargePolicy.dailyCharge());
   }
 
 }

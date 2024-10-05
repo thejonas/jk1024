@@ -26,6 +26,7 @@ public record RentalAgreement(
                     Daily rental charge: $%,.2f
                     Check out date: %tD
                     Discount percent: %d%%
+                    Final charge: $%,.2f
                     """,
             toolCode,
             toolType.label(),
@@ -33,6 +34,7 @@ public record RentalAgreement(
             rentalDays,
             dailyRentalCharge,
             checkoutDate,
-            discountPercent);
+            discountPercent,
+            finalCharge);
   }
 }
