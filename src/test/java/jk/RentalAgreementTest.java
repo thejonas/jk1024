@@ -14,7 +14,7 @@ class RentalAgreementTest {
                                                                              "DeWalt",
                                                                              4,
                                                                              LocalDate.of(1989, 12, 13),
-                                                                             LocalDate.of(2000, 12, 12),
+                                                                             LocalDate.of(2000, 2, 9),
                                                                              1.93,
                                                                              3,
                                                                              34.02,
@@ -27,6 +27,12 @@ class RentalAgreementTest {
     assertThat(RENTAL_AGREEMENT.format())
             .contains("Tool code: JAKR", "Rental days: 4");
 
+  }
+
+  @Test
+  void formatDates() {
+    assertThat(RENTAL_AGREEMENT.format())
+            .contains("Check out date: 12/13/89");
   }
 
 }
