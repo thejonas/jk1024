@@ -30,4 +30,17 @@ class StoreTest {
                                            RentalAgreement::discountPercent)
                                .containsExactly(toolCode, checkoutDate, discount);
   }
+
+  @ParameterizedTest
+  @CsvSource(textBlock = """
+          JAKD, JACKHAMMER, DeWalt
+          LADW, LADDER, Werner
+          """)
+  void lookupTool(String toolCode, ToolType toolType, String brand) {
+    final var rentalAgreement = store.checkout(toolCode, LocalDate.now(), 5, 0);
+
+    assertThat(rentalAgreement).extracting(RentalAgreement::toolType,
+                                           RentalAgreement::toolBrand)
+                               .containsExactly(toolType, brand);
+  }
 }
