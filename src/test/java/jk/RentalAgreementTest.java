@@ -35,4 +35,9 @@ class RentalAgreementTest {
             .contains("Check out date: 12/13/89");
   }
 
+  @Test
+  void formatDiscountPercentage() {
+    assertThat(RENTAL_AGREEMENT.format())
+            .contains("Discount percent: 10%");
+  }
 }

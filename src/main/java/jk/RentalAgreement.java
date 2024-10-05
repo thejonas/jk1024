@@ -22,6 +22,11 @@ public record RentalAgreement(
                     Tool code: %s
                     Rental days: %d
                     Check out date: %tD
-                    """, toolCode, rentalDays, checkoutDate);
+                    Discount percent: %d%%
+                    """,
+            toolCode,
+            rentalDays,
+            checkoutDate,
+            discountPercent);
   }
 }
