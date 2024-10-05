@@ -23,6 +23,7 @@ public record RentalAgreement(
                     Tool type: %s
                     Tool brand: %s
                     Rental days: %d
+                    Daily rental charge: $%,.2f
                     Check out date: %tD
                     Discount percent: %d%%
                     """,
@@ -30,6 +31,7 @@ public record RentalAgreement(
             toolType.label(),
             toolBrand,
             rentalDays,
+            dailyRentalCharge,
             checkoutDate,
             discountPercent);
   }
