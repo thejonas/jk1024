@@ -59,11 +59,22 @@ class StoreTest {
   @Test
   void computeSimpleCharge() {
     final var onAWednesday = LocalDate.of(2024, 10, 2);
-    final var rentalAgreement = store.checkout("LADW", onAWednesday, 2, 0);
+    final var rentalAgreement = store.checkout("CHNS", onAWednesday, 2, 0);
 
     assertThat(rentalAgreement).extracting(RentalAgreement::dueDate,
                                            RentalAgreement::chargeDays,
                                            RentalAgreement::finalCharge)
-                               .containsExactly(onAWednesday.plusDays(1), 2, 3.98);
+                               .containsExactly(onAWednesday.plusDays(1), 2, 2.98);
+  }
+
+  @Test
+  void computeSimpleChargeWithDiscount() {
+    final var april29 = LocalDate.of(2016, 4, 29);
+    final var rentalAgreement = store.checkout("LADW", april29, 5, 15);
+
+    assertThat(rentalAgreement).extracting(RentalAgreement::preDiscountCharge,
+                                           RentalAgreement::discountAmount,
+                                           RentalAgreement::finalCharge)
+                               .containsExactly(9.95, 1.49, 8.46);
   }
 }
