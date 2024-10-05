@@ -16,4 +16,11 @@ public record RentalAgreement(
         Double discountAmount,
         Double finalCharge
 ) {
+  public String format() {
+    return String.format(
+            """
+                    Tool code: %s
+                    Rental days: %d
+                    """, toolCode, rentalDays);
+  }
 }
