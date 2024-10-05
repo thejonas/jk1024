@@ -19,7 +19,7 @@ class RentalAgreementTest {
                                                                              3,
                                                                              34.02,
                                                                              10,
-                                                                             0.33,
+                                                                             0.3,
                                                                              4555.33);
 
   @Test
@@ -48,6 +48,8 @@ class RentalAgreementTest {
   void formatCurrencies() {
     assertThat(RENTAL_AGREEMENT.format())
             .contains("Daily rental charge: $1.93\n",
+                      "Pre-discount charge: $34.02\n",
+                      "Discount amount: $0.30\n",
                       "Final charge: $4,555.33\n");
   }
 }

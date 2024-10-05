@@ -23,18 +23,22 @@ public record RentalAgreement(
                     Tool type: %s
                     Tool brand: %s
                     Rental days: %d
-                    Daily rental charge: $%,.2f
                     Check out date: %tD
+                    Daily rental charge: $%,.2f
+                    Pre-discount charge: $%,.2f
                     Discount percent: %d%%
+                    Discount amount: $%,.2f
                     Final charge: $%,.2f
                     """,
             toolCode,
             toolType.label(),
             toolBrand,
             rentalDays,
-            dailyRentalCharge,
             checkoutDate,
+            dailyRentalCharge,
+            preDiscountCharge,
             discountPercent,
+            discountAmount,
             finalCharge);
   }
 }
