@@ -11,7 +11,7 @@ class RentalAgreementTest {
 
   public static final RentalAgreement RENTAL_AGREEMENT = new RentalAgreement("JAKR",
                                                                              JACKHAMMER,
-                                                                             "DeWalt",
+                                                                             "Ridgid",
                                                                              4,
                                                                              LocalDate.of(1989, 12, 13),
                                                                              LocalDate.of(2000, 2, 9),
@@ -25,7 +25,10 @@ class RentalAgreementTest {
   @Test
   void formatSimpleInputValues() {
     assertThat(RENTAL_AGREEMENT.format())
-            .contains("Tool code: JAKR", "Rental days: 4");
+            .contains("Tool code: JAKR",
+                      "Tool type: Jackhammer",
+                      "Tool brand: Ridgid",
+                      "Rental days: 4");
 
   }
 

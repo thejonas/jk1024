@@ -20,11 +20,15 @@ public record RentalAgreement(
     return String.format(
             """
                     Tool code: %s
+                    Tool type: %s
+                    Tool brand: %s
                     Rental days: %d
                     Check out date: %tD
                     Discount percent: %d%%
                     """,
             toolCode,
+            toolType.label(),
+            toolBrand,
             rentalDays,
             checkoutDate,
             discountPercent);
