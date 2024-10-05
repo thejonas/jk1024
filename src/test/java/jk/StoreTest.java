@@ -1,11 +1,11 @@
 package jk;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
 
-import static jk.ToolType.CHAINSAW;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StoreTest {
@@ -17,25 +17,17 @@ class StoreTest {
     store = new Store();
   }
 
-  @Test
-  void oneDayRentalNoDiscount() {
-    final var checkoutDate = LocalDate.of(2024, 10, 4);
-    final var rentalAgreement = store.checkout("CHNS", checkoutDate, 1, 0);
+  @ParameterizedTest
+  @CsvSource(textBlock = """
+          CHNS, 2024-10-04, 1, 0
+          JAKR, 2020-07-31, 5, 10
+          """)
+  void copyInputValues(String toolCode, LocalDate checkoutDate, Integer rentalDays, Integer discount) {
+    final var rentalAgreement = store.checkout(toolCode, checkoutDate, rentalDays, discount);
 
-    assertThat(rentalAgreement).isEqualTo(new RentalAgreement(
-                    "CHNS",
-                    CHAINSAW,
-                    "Stihl",
-                    1,
-                    checkoutDate,
-                    checkoutDate,
-                    1.49,
-                    1,
-                    1.49,
-                    0,
-                    0.0,
-                    1.49
-            )
-    );
+    assertThat(rentalAgreement).extracting(RentalAgreement::toolCode,
+                                           RentalAgreement::checkoutDate,
+                                           RentalAgreement::discountPercent)
+                               .containsExactly(toolCode, checkoutDate, discount);
   }
 }

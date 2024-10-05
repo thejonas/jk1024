@@ -2,26 +2,24 @@ package jk;
 
 import java.time.LocalDate;
 
-import static jk.ToolType.CHAINSAW;
-
 public class Store {
   public RentalAgreement checkout(final String toolCode,
                                   final LocalDate checkoutDate,
                                   final Integer rentalDays,
-                                  final Integer discount) {
+                                  final Integer discountPercent) {
     return new RentalAgreement(
-            "CHNS",
-            CHAINSAW,
-            "Stihl",
-            1,
+            toolCode,
+            null,
+            null,
+            rentalDays,
             checkoutDate,
-            checkoutDate,
-            1.49,
-            1,
-            1.49,
-            0,
-            0.0,
-            1.49);
+            null,
+            null,
+            null,
+            null,
+            discountPercent,
+            null,
+            null);
   }
 
 }
