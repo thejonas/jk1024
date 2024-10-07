@@ -1,19 +1,27 @@
 package jk.services;
 
-import jk.day.DayType;
-import jk.day.Holiday;
+import jk.day.*;
 import jk.models.ChargePolicy;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
-
-import static jk.day.DayType.*;
 
 
 public class ChargeDaySelector {
-  private static boolean weekend(final LocalDate date) {
-    return date.getDayOfWeek().getValue() >= DayOfWeek.SATURDAY.getValue();
+  private static final List<DayTypeSelector> prioritizedDayTypeSelectors = List.of(
+          new HolidaySelector(),
+          new WeekendSelector(),
+          new WeekdaySelector()
+  );
+
+  private static boolean chargeableDay(final ChargePolicy chargePolicy, final DayType d) {
+    return switch (d) {
+      case WEEKEND -> chargePolicy.weekendCharge();
+      case WEEKDAY -> chargePolicy.weekdayCharge();
+      case HOLIDAY -> chargePolicy.holidayCharge();
+    };
   }
 
   public Integer numberOfChargeDays(final ChargePolicy chargePolicy,
@@ -28,20 +36,16 @@ public class ChargeDaySelector {
   }
 
   private boolean includeDate(final ChargePolicy chargePolicy, final LocalDate date) {
-    return switch (dayType(date)) {
-      case WEEKEND -> chargePolicy.weekendCharge();
-      case WEEKDAY -> chargePolicy.weekdayCharge();
-      case HOLIDAY -> chargePolicy.holidayCharge();
-    };
+    return dayType(date)
+            .filter(d -> chargeableDay(chargePolicy, d))
+            .isPresent();
   }
 
-  private DayType dayType(LocalDate date) {
-    if (Holiday.observed(date)) {
-      return HOLIDAY;
-    } else if (weekend(date)) {
-      return WEEKEND;
-    } else {
-      return WEEKDAY;
-    }
+  private Optional<DayType> dayType(LocalDate date) {
+    return prioritizedDayTypeSelectors.stream()
+                                      .flatMap(selector -> selector.selected(date).stream())
+                                      .findFirst();
+
+
   }
 }
