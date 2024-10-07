@@ -2,7 +2,6 @@ package jk;
 
 import jk.models.RentalAgreement;
 import jk.services.Store;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -105,7 +104,6 @@ class AcceptanceTest {
     );
   }
 
-  @Disabled
   @ParameterizedTest
   @MethodSource("successCases")
   void successfulRental(final String toolCode,
@@ -116,10 +114,9 @@ class AcceptanceTest {
     assertThat(store.checkout(toolCode, checkoutDate, rentalDays, discount)).isEqualTo(rentalAgreement);
   }
 
-  @Disabled
   @Test
   void invalidDiscount() {
     assertThatThrownBy(() -> store.checkout("JAKR", SEPT_03_2015, 5, 101))
-            .hasMessage("Invalid discount 101%. Discount must be in the range 0%-100%");
+            .hasMessage("Discount percent parameter is 101. Value must be in the range 0-100.");
   }
 }
