@@ -47,4 +47,30 @@ class ChargeDaySelectorTest {
     assertThat(chargeDaySelector.numberOfChargeDays(weekdaysAndWeekends, MONDAY, 7)).isEqualTo(5);
   }
 
+  @Test
+  void countWeekdaysHolidaysAndWeekdends() {
+    final var allDays = new ChargePolicy(JACKHAMMER,
+                                         1.0,
+                                         true,
+                                         true,
+                                         true);
+
+    final var july4th = LocalDate.of(2024, 7, 4);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(allDays, july4th, 5)).isEqualTo(5);
+  }
+
+  @Test
+  void countWeekdaysOnly() {
+    final var allDays = new ChargePolicy(JACKHAMMER,
+                                         1.0,
+                                         true,
+                                         false,
+                                         false);
+
+    final var july4th = LocalDate.of(2024, 7, 4);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(allDays, july4th, 5)).isEqualTo(2);
+
+  }
 }

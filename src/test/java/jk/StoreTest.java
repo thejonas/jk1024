@@ -77,4 +77,13 @@ class StoreTest {
                                            RentalAgreement::finalCharge)
                                .containsExactly(9.95, 1.49, 8.46);
   }
+
+  @Test
+  void computeChargeIgnoringHolidaysAndWeekends() {
+    final var july4 = LocalDate.of(2008, 7, 4);
+    final var rentalAgreement = store.checkout("JAKR", july4, 6, 10);
+
+    assertThat(rentalAgreement).extracting(RentalAgreement::chargeDays, RentalAgreement::finalCharge)
+                               .containsExactly(3, 8.07);
+  }
 }

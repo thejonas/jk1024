@@ -7,6 +7,7 @@ public class Store {
   private final ToolRepository toolRepository = new ToolRepository();
   private final ChargePolicyRepository chargePolicyRepository = new ChargePolicyRepository();
   private final ChargeCalculator chargeCalculator = new ChargeCalculator();
+  private final ChargeDaySelector chargeDaySelector = new ChargeDaySelector();
 
   public RentalAgreement checkout(final String toolCode,
                                   final LocalDate checkoutDate,
@@ -14,7 +15,8 @@ public class Store {
                                   final Integer discountPercent) {
     final var tool = toolRepository.lookup(toolCode);
     final var chargePolicy = chargePolicyRepository.lookup(tool.toolType());
-    final var chargeSummary = chargeCalculator.chargeSummary(rentalDays, chargePolicy.dailyCharge(), discountPercent);
+    final var chargeDays = chargeDaySelector.numberOfChargeDays(chargePolicy, checkoutDate, rentalDays);
+    final var chargeSummary = chargeCalculator.chargeSummary(chargeDays, chargePolicy.dailyCharge(), discountPercent);
 
     return new RentalAgreement(
             toolCode,
@@ -24,7 +26,7 @@ public class Store {
             checkoutDate,
             checkoutDate.plusDays(rentalDays - 1),
             chargePolicy.dailyCharge(),
-            rentalDays,
+            chargeDays,
             chargeSummary.preDiscountCharge(),
             discountPercent,
             chargeSummary.discountAmount(),

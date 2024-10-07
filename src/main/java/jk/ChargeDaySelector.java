@@ -4,11 +4,14 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.stream.IntStream;
 
-import static jk.DayType.WEEKDAY;
-import static jk.DayType.WEEKEND;
+import static jk.DayType.*;
 
 
 public class ChargeDaySelector {
+  private static boolean weekend(final LocalDate date) {
+    return date.getDayOfWeek().getValue() >= DayOfWeek.SATURDAY.getValue();
+  }
+
   public Integer numberOfChargeDays(final ChargePolicy chargePolicy,
                                     final LocalDate checkoutDate,
                                     final Integer rentalDays) {
@@ -24,12 +27,14 @@ public class ChargeDaySelector {
     return switch (dayType(date)) {
       case WEEKEND -> chargePolicy.weekendCharge();
       case WEEKDAY -> chargePolicy.weekdayCharge();
-      case HOLIDAY -> false;
+      case HOLIDAY -> chargePolicy.holidayCharge();
     };
   }
 
   private DayType dayType(LocalDate date) {
-    if (date.getDayOfWeek().getValue() >= DayOfWeek.SATURDAY.getValue()) {
+    if (Holiday.observed(date)) {
+      return HOLIDAY;
+    } else if (weekend(date)) {
       return WEEKEND;
     } else {
       return WEEKDAY;
