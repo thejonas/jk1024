@@ -21,5 +21,9 @@ class HolidaySelectorTest {
     assertThat(holidaySelector.selected(LocalDate.of(2024, 7, 4))).hasValue(HOLIDAY);
   }
 
+  @Test
+  void laborDay() {
+    assertThat(holidaySelector.selected(LocalDate.of(2024, 9, 2))).hasValue(HOLIDAY);
+  }
 
 }

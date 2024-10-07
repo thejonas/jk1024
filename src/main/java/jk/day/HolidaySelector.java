@@ -7,7 +7,7 @@ import java.util.Optional;
 import static jk.day.DayType.HOLIDAY;
 
 public class HolidaySelector implements DayTypeSelector {
-  private static final List<ObservedHoliday> observedHolidays = List.of(new July4th());
+  private static final List<ObservedHoliday> observedHolidays = List.of(new July4th(), new LaborDay());
 
   @Override
   public Optional<DayType> selected(final LocalDate date) {
