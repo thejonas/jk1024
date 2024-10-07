@@ -16,28 +16,33 @@ public class ChargeDaySelector {
           new WeekdaySelector()
   );
 
-  private static boolean chargeableDay(final ChargePolicy chargePolicy, final DayType d) {
-    return switch (d) {
+  private final ChargePolicy chargePolicy;
+
+  public ChargeDaySelector(final ChargePolicy chargePolicy) {
+    this.chargePolicy = chargePolicy;
+  }
+
+  private boolean chargeableDay(final DayType dayType) {
+    return switch (dayType) {
       case WEEKEND -> chargePolicy.weekendCharge();
       case WEEKDAY -> chargePolicy.weekdayCharge();
       case HOLIDAY -> chargePolicy.holidayCharge();
     };
   }
 
-  public Integer numberOfChargeDays(final ChargePolicy chargePolicy,
-                                    final LocalDate checkoutDate,
+  public Integer numberOfChargeDays(final LocalDate checkoutDate,
                                     final Integer rentalDays) {
     final var chargeDays = IntStream.range(0, rentalDays)
                                     .mapToObj(checkoutDate::plusDays)
-                                    .filter(date -> includeDate(chargePolicy, date))
+                                    .filter(this::includeDate)
                                     .count();
 
     return Math.toIntExact(chargeDays);
   }
 
-  private boolean includeDate(final ChargePolicy chargePolicy, final LocalDate date) {
+  private boolean includeDate(final LocalDate date) {
     return dayType(date)
-            .filter(d -> chargeableDay(chargePolicy, d))
+            .filter(this::chargeableDay)
             .isPresent();
   }
 

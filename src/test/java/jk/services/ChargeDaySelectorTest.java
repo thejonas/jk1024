@@ -13,7 +13,6 @@ class ChargeDaySelectorTest {
 
   private static final LocalDate MONDAY = LocalDate.of(2019, 4, 29);
 
-  private final ChargeDaySelector chargeDaySelector = new ChargeDaySelector();
 
   @Test
   void weekdays() {
@@ -22,8 +21,9 @@ class ChargeDaySelectorTest {
                                           true,
                                           false,
                                           false);
+    final var chargeDaySelector = new ChargeDaySelector(weekdays);
 
-    assertThat(chargeDaySelector.numberOfChargeDays(weekdays, MONDAY, 5)).isEqualTo(5);
+    assertThat(chargeDaySelector.numberOfChargeDays(MONDAY, 5)).isEqualTo(5);
   }
 
   @Test
@@ -34,18 +34,22 @@ class ChargeDaySelectorTest {
                                                      true,
                                                      false);
 
-    assertThat(chargeDaySelector.numberOfChargeDays(weekdaysAndWeekends, MONDAY, 7)).isEqualTo(7);
+    final var chargeDaySelector = new ChargeDaySelector(weekdaysAndWeekends);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(MONDAY, 7)).isEqualTo(7);
   }
 
   @Test
   void countWeekdaysNotWeekends() {
-    final var weekdaysAndWeekends = new ChargePolicy(JACKHAMMER,
+    final var weekdaysNotWeekends = new ChargePolicy(JACKHAMMER,
                                                      1.0,
                                                      true,
                                                      false,
                                                      false);
 
-    assertThat(chargeDaySelector.numberOfChargeDays(weekdaysAndWeekends, MONDAY, 7)).isEqualTo(5);
+    final var chargeDaySelector = new ChargeDaySelector(weekdaysNotWeekends);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(MONDAY, 7)).isEqualTo(5);
   }
 
   @Test
@@ -58,7 +62,9 @@ class ChargeDaySelectorTest {
 
     final var july4th = LocalDate.of(2024, 7, 4);
 
-    assertThat(chargeDaySelector.numberOfChargeDays(allDays, july4th, 5)).isEqualTo(5);
+    final var chargeDaySelector = new ChargeDaySelector(allDays);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(july4th, 5)).isEqualTo(5);
   }
 
   @Test
@@ -71,7 +77,9 @@ class ChargeDaySelectorTest {
 
     final var july4th = LocalDate.of(2024, 7, 4);
 
-    assertThat(chargeDaySelector.numberOfChargeDays(allDays, july4th, 5)).isEqualTo(2);
+    final var chargeDaySelector = new ChargeDaySelector(allDays);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(july4th, 5)).isEqualTo(2);
 
   }
 }
