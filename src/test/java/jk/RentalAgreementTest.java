@@ -28,7 +28,8 @@ class RentalAgreementTest {
             .contains("Tool code: JAKR",
                       "Tool type: Jackhammer",
                       "Tool brand: Ridgid",
-                      "Rental days: 4");
+                      "Rental days: 4",
+                      "Charge days: 3");
 
   }
 

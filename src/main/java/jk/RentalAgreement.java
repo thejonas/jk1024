@@ -25,6 +25,7 @@ public record RentalAgreement(
                     Rental days: %d
                     Check out date: %tD
                     Daily rental charge: $%,.2f
+                    Charge days: %d
                     Pre-discount charge: $%,.2f
                     Discount percent: %d%%
                     Discount amount: $%,.2f
@@ -36,6 +37,7 @@ public record RentalAgreement(
             rentalDays,
             checkoutDate,
             dailyRentalCharge,
+            chargeDays,
             preDiscountCharge,
             discountPercent,
             discountAmount,
