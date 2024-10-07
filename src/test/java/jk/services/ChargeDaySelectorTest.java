@@ -21,6 +21,7 @@ class ChargeDaySelectorTest {
                                           true,
                                           false,
                                           false);
+
     final var chargeDaySelector = new ChargeDaySelector(weekdays);
 
     assertThat(chargeDaySelector.numberOfChargeDays(MONDAY, 5)).isEqualTo(5);

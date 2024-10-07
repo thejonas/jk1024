@@ -22,8 +22,7 @@ class ChargePolicyRepositoryTest {
   @ParameterizedTest
   @FieldSource("chargePolicies")
   void lookup(ChargePolicy chargePolicy) {
-    assertThat(chargePolicyRepository.lookup(chargePolicy.toolType()))
-            .isEqualTo(chargePolicy);
+    assertThat(chargePolicyRepository.lookup(chargePolicy.toolType())).isEqualTo(chargePolicy);
   }
 
 }

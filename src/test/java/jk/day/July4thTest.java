@@ -2,8 +2,6 @@ package jk.day;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class July4thTest {
@@ -11,16 +9,16 @@ public class July4thTest {
 
   @Test
   void july4OnAWeekday() {
-    assertThat(july4th.of(2024)).isEqualTo(LocalDate.of(2024, 7, 4));
+    assertThat(july4th.of(2024)).isEqualTo("2024-07-04");
   }
 
   @Test
   void july4OnASaturday() {
-    assertThat(july4th.of(2020)).isEqualTo(LocalDate.of(2020, 7, 3));
+    assertThat(july4th.of(2020)).isEqualTo("2020-07-03");
   }
 
   @Test
   void july4thOnASunday() {
-    assertThat(july4th.of(2021)).isEqualTo(LocalDate.of(2021, 7, 5));
+    assertThat(july4th.of(2021)).isEqualTo("2021-07-05");
   }
 }
