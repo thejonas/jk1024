@@ -17,6 +17,8 @@ public class Store {
                                   final Integer rentalDays,
                                   final Integer discountPercent) {
 
+    Validator.validateParameters(rentalDays, discountPercent);
+
     final var tool = toolRepository.lookup(toolCode);
     final var chargePolicy = chargePolicyRepository.lookup(tool.toolType());
     final var chargeDaySelector = new ChargeDaySelector(chargePolicy);
@@ -37,5 +39,4 @@ public class Store {
             chargeSummary.discountAmount(),
             chargeSummary.finalCharge());
   }
-
 }

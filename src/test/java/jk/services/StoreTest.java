@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class StoreTest {
 
@@ -87,5 +88,12 @@ class StoreTest {
 
     assertThat(rentalAgreement).extracting(RentalAgreement::chargeDays, RentalAgreement::finalCharge)
                                .containsExactly(3, 8.07);
+  }
+
+  @Test
+  void validateParametrs() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> store.checkout("JAKR", LocalDate.now(), 0, 22));
+
   }
 }
