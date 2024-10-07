@@ -15,7 +15,7 @@ class ChargeDaySelectorTest {
 
 
   @Test
-  void weekdays() {
+  void countWeekdays() {
     final var weekdays = new ChargePolicy(LADDER,
                                           1.0,
                                           true,
@@ -53,7 +53,7 @@ class ChargeDaySelectorTest {
   }
 
   @Test
-  void countWeekdaysHolidaysAndWeekdends() {
+  void countWeekdaysHolidaysAndWeekends() {
     final var allDays = new ChargePolicy(JACKHAMMER,
                                          1.0,
                                          true,
@@ -80,6 +80,18 @@ class ChargeDaySelectorTest {
     final var chargeDaySelector = new ChargeDaySelector(allDays);
 
     assertThat(chargeDaySelector.numberOfChargeDays(july4th, 5)).isEqualTo(2);
+  }
 
+  @Test
+  void countWeekendsOnly() {
+    final var weekendsOnly = new ChargePolicy(JACKHAMMER,
+                                              1.0,
+                                              false,
+                                              true,
+                                              false);
+
+    final var chargeDaySelector = new ChargeDaySelector(weekendsOnly);
+
+    assertThat(chargeDaySelector.numberOfChargeDays(MONDAY, 7)).isEqualTo(2);
   }
 }
