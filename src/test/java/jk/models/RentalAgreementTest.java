@@ -14,7 +14,7 @@ class RentalAgreementTest {
                                                                              "Ridgid",
                                                                              4,
                                                                              LocalDate.of(1989, 12, 13),
-                                                                             LocalDate.of(2000, 2, 9),
+                                                                             LocalDate.of(2008, 7, 9),
                                                                              1.93,
                                                                              3,
                                                                              34.02,
@@ -36,7 +36,8 @@ class RentalAgreementTest {
   @Test
   void formatDates() {
     assertThat(RENTAL_AGREEMENT.format())
-            .contains("Check out date: 12/13/89");
+            .contains("Check out date: 12/13/89",
+                      "Due date: 07/09/08");
   }
 
   @Test

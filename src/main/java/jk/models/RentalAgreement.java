@@ -24,6 +24,7 @@ public record RentalAgreement(
                     Tool brand: %s
                     Rental days: %d
                     Check out date: %tD
+                    Due date: %tD
                     Daily rental charge: $%,.2f
                     Charge days: %d
                     Pre-discount charge: $%,.2f
@@ -36,6 +37,7 @@ public record RentalAgreement(
             toolBrand,
             rentalDays,
             checkoutDate,
+            dueDate,
             dailyRentalCharge,
             chargeDays,
             preDiscountCharge,
