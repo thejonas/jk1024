@@ -1,4 +1,6 @@
-package jk;
+package jk.services;
+
+import jk.models.ChargeSummary;
 
 import java.math.BigDecimal;
 

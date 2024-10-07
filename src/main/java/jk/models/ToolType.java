@@ -1,4 +1,4 @@
-package jk;
+package jk.models;
 
 public enum ToolType {
   CHAINSAW("Chainsaw"),

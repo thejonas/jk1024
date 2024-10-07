@@ -1,11 +1,12 @@
-package jk;
+package jk.services;
 
+import jk.models.ChargePolicy;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static jk.ToolType.JACKHAMMER;
-import static jk.ToolType.LADDER;
+import static jk.models.ToolType.JACKHAMMER;
+import static jk.models.ToolType.LADDER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ChargeDaySelectorTest {

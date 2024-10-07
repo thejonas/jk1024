@@ -1,11 +1,12 @@
-package jk;
+package jk.repositories;
 
+import jk.models.ChargePolicy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.FieldSource;
 
 import java.util.List;
 
-import static jk.ToolType.*;
+import static jk.models.ToolType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ChargePolicyRepositoryTest {

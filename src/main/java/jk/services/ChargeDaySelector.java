@@ -1,10 +1,14 @@
-package jk;
+package jk.services;
+
+import jk.day.DayType;
+import jk.day.Holiday;
+import jk.models.ChargePolicy;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.stream.IntStream;
 
-import static jk.DayType.*;
+import static jk.day.DayType.*;
 
 
 public class ChargeDaySelector {

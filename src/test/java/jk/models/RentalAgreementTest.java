@@ -1,10 +1,10 @@
-package jk;
+package jk.models;
 
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static jk.ToolType.JACKHAMMER;
+import static jk.models.ToolType.JACKHAMMER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RentalAgreementTest {

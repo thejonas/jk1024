@@ -1,4 +1,4 @@
-package jk;
+package jk.day;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,4 +1,8 @@
-package jk;
+package jk.services;
+
+import jk.models.RentalAgreement;
+import jk.repositories.ChargePolicyRepository;
+import jk.repositories.ToolRepository;
 
 import java.time.LocalDate;
 

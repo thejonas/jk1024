@@ -1,4 +1,4 @@
-package jk;
+package jk.models;
 
 import java.time.LocalDate;
 

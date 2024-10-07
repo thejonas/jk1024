@@ -1,4 +1,4 @@
-package jk;
+package jk.day;
 
 import org.junit.jupiter.api.Test;
 

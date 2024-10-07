@@ -1,8 +1,11 @@
-package jk;
+package jk.repositories;
+
+import jk.models.ChargePolicy;
+import jk.models.ToolType;
 
 import java.util.Map;
 
-import static jk.ToolType.*;
+import static jk.models.ToolType.*;
 
 public class ChargePolicyRepository {
   private static final Map<ToolType, ChargePolicy> repository = Map.of(

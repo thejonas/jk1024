@@ -1,8 +1,10 @@
-package jk;
+package jk.repositories;
+
+import jk.models.Tool;
 
 import java.util.Map;
 
-import static jk.ToolType.*;
+import static jk.models.ToolType.*;
 
 public class ToolRepository {
   private static final Map<String, Tool> repository = Map.of(

@@ -1,12 +1,13 @@
-package jk;
+package jk.repositories;
 
+import jk.models.Tool;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static jk.ToolType.*;
+import static jk.models.ToolType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 

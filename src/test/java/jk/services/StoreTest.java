@@ -1,5 +1,7 @@
-package jk;
+package jk.services;
 
+import jk.models.RentalAgreement;
+import jk.models.ToolType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
